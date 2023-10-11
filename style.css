@@ -9,7 +9,7 @@
 /* ------------------------------ colors ------------------------------ */
 body {
   background: black;
-  background-image: url("bck-matrix.webp");
+  background-image: url("img/bck-matrix.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -18,11 +18,11 @@ section article {
   background: white;
 }
 
-section article div input {
+section article fieldset input {
   box-shadow: -4px -4px 5px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-section article div button {
+section article fieldset button {
   box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.2), 2px 2px 5px rgba(230, 230, 230, 0.2);
 }
 
@@ -99,12 +99,13 @@ section article img {
   text-align: center;
 }
 
-section article div {
+section article fieldset {
   display: flex;
+  border: none;
 }
 
-section article div input,
-section article div button {
+section article input,
+section article button {
   padding: 0.5em;
   border: 0;
   outline: 0;
@@ -116,11 +117,11 @@ section article div button {
   padding: 0em 0.5em;
 }
 
-section article div input {
+section article input {
   width: 300px;
 }
 
-section article div button {
+section article fieldset button {
   flex: 1;
   width: 125px;
 }
