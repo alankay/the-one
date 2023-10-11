@@ -3,141 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Are you the one? | Codespace</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
-      /* ------------------------------ reset ------------------------------ */
-      * {
-        margin: 0em;
-        padding: 0em;
-        font-family: "Orbitron", sans-serif;
-        /*box-sizing: border-box;*/
-      }
-
-      /* ------------------------------ colors ------------------------------ */
-      body {
-        background: black;
-        background-image: url("bck-matrix.webp");
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
-
-      section article {
-        background: white;
-      }
-
-      section article div input {
-        box-shadow: -4px -4px 5px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      section article div button {
-        box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.2), 2px 2px 5px rgba(230, 230, 230, 0.2);
-      }
-
-      .guessStatus {
-        background-color: blanchedalmond;
-      }
-
-      .tooHigh {
-        background-color: tomato;
-        color: white;
-      }
-
-      .tooLow {
-        background-color: dodgerblue;
-        color: white;
-      }
-
-      .error {
-        background-color: red;
-        color: white;
-      }
-
-      .correct {
-        background-color: darkgoldenrod;
-        color: white;
-      }
-
-      /* ------------------------------ structure ------------------------------ */
-      body {
-        min-height: 100%;
-      }
-
-      section {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: auto;
-        width: 750px;
-        border-radius: 5px;
-      }
-
-      section article {
-        border-radius: 5px;
-        padding: 2em;
-      }
-
-      section article h2 {
-        font-size: 3em;
-        text-align: center;
-        margin: 0.5em;
-      }
-
-      section article p {
-        line-height: 1.5em;
-        margin: 0.5em;
-        font-size: 1em;
-        font-family: "Syncopate", sans-serif;
-        padding: 1em;
-      }
-      section article figure {
-        text-align: center;
-      }
-
-      section article img {
-        width: 75%;
-        max-width: 100%;
-        height: auto;
-      }
-
-      #guessStatus {
-        border-radius: 5px;
-        text-align: center;
-      }
-
-      section article div {
-        display: flex;
-      }
-
-      section article div input,
-      section article div button {
-        padding: 0.5em;
-        border: 0;
-        outline: 0;
-        height: 60px;
-        border-radius: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        margin: 10px;
-        padding: 0em 0.5em;
-      }
-
-      section article div input {
-        width: 300px;
-      }
-
-      section article div button {
-        flex: 1;
-        width: 125px;
-      }
-    </style>
-    >
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <section>
@@ -155,55 +26,6 @@
         </div>
       </article>
     </section>
-
-    <script>
-      // Get references to buttons and user input for number
-      const enterButton = document.getElementById("enterButton");
-      const againButton = document.getElementById("againButton");
-      const guessStatus = document.getElementById("guessStatus");
-
-      // Generate a random number between 1 and 100
-      const randomNumber = Math.ceil(Math.random() * 100);
-
-      // Function to check user's guess and provide feedback
-      const checkNumber = () => {
-        const userGuess = parseInt(document.getElementById("userGuess").value);
-        if (userGuess == randomNumber) {
-          // If the user guess is correct, display a success message and update UI elements
-          guessStatus.innerHTML = "<strong>You are the one</strong>, because your guess of  " + randomNumber + " is the mystery number.<br />Take the red pill and let's see how big the rabbit goes...";
-          document.getElementById("morpheus").src = "morph2.png";
-          document.getElementById("guessStatus").className = "correct";
-          document.getElementById("oneStatus").innerHTML = "You are the one.";
-          document.getElementById("oneStatusRule").innerHTML = "Let's save Zion.";
-          document.getElementById("oneStatusRule").style.textAlign = "center";
-        } else if (userGuess > randomNumber && userGuess < 100) {
-          // If the guess is too high, display a message suggesting a lower guess
-          guessStatus.innerHTML = "You guessed " + userGuess + " - which is too high. <strong>Take the blue pill</strong>. Ignorance is bliss.<br />Try again if you still believe you could be the one.";
-          document.getElementById("morpheus").src = "morph1.png";
-          document.getElementById("guessStatus").className = "tooHigh";
-        } else if (userGuess < 1 || userGuess > 100) {
-          // If the guess is out of the valid range, display an error message
-          guessStatus.innerHTML = "Your guess was " + userGuess + " - it has to be between 1 and 100, try again. Are you sure you are in the right place? Are you a human or an AI?";
-          document.getElementById("guessStatus").className = "error";
-        } else if (isNaN(userGuess)) {
-          // If the user input is not a number, display an error message
-          guessStatus.innerHTML = "No number entered. I am pretty sure you are not the one But try again if you still believe you could be.";
-          document.getElementById("guessStatus").className = "error";
-        } else {
-          // If the guess is too low, display a message suggesting a higher guess
-          guessStatus.innerHTML = "You guessed " + userGuess + " - which is too low. <strong>Take the blue pill</strong>. Ignorance is bliss.<br />Try again if you still believe you could be the one.";
-          document.getElementById("morpheus").src = "morph1.png";
-          document.getElementById("guessStatus").className = "tooLow";
-        }
-      };
-
-      // Event listener for the enter button, calls the checkNumber function when clicked
-      enterButton.addEventListener("click", checkNumber);
-
-      // Event listener for the "Play Again" button, reloads the page to start a new game
-      againButton.addEventListener("click", function () {
-        location.reload();
-      });
-    </script>
+    <script src="checkguess.js"></script>
   </body>
 </html>
